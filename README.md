@@ -42,18 +42,15 @@ Zakres dostępnych funkcji zależy od przypisanej roli.
 - **ASP.NET Core Identity**
 - **SQL Server**
 - **Razor Pages**
-- **Doxygen** (dokumentacja techniczna)
-- **LaTeX / PDF** (eksport dokumentacji)
 
 ---
 
 ## 🚀 Uruchomienie projektu
 
 ### Wymagania
-- .NET SDK (zgodny z wersją projektu)
+- .NET SDK 
 - SQL Server
 - Visual Studio / VS Code
-- (opcjonalnie) MiKTeX lub TeX Live – do generowania PDF z Doxygena
 
 ### Kroki
 1. Sklonuj repozytorium:
