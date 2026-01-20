@@ -55,4 +55,4 @@ Zakres dostępnych funkcji zależy od przypisanej roli.
 ### Kroki
 1. Sklonuj repozytorium:
    ```bash
-   git clone https://github.com/allmssid/nazwa-repozytorium.git
+   git clone https://github.com/allmssid/Projekt_Aplikacja_Wspierajaca_Rozwoj_Dziecka.git
