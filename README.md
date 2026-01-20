@@ -58,4 +58,4 @@ Zakres dostępnych funkcji zależy od przypisanej roli.
 ### Kroki
 1. Sklonuj repozytorium:
    ```bash
-   git clone https://github.com/twoj-login/nazwa-repozytorium.git
+   git clone https://github.com/allmssid/nazwa-repozytorium.git
