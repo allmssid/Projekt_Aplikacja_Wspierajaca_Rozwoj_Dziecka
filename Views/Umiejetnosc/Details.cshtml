@@ -1,0 +1,61 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.Umiejetnosc
+
+@{
+    ViewData["Title"] = "Szczegóły umiejętności";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="auth-card">
+                <h1 class="auth-title">@Model.Nazwa</h1>
+                <p class="auth-subtitle">
+                    Szczegółowe informacje o wybranej umiejętności.
+                </p>
+
+                <dl class="row">
+                    <dt class="col-sm-3">Obszar rozwoju</dt>
+                    <dd class="col-sm-9">@Model.Kierunek</dd>
+
+                    <dt class="col-sm-3">Zalecany wiek</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.ZalecanyWiekOdRoku.HasValue || Model.ZalecanyWiekDoRoku.HasValue)
+                        {
+                            @($"{Model.ZalecanyWiekOdRoku ?? 0} - {Model.ZalecanyWiekDoRoku ?? 0} lat")
+                        }
+                        else
+                        {
+                            <span class="text-muted">Brak określonego zakresu</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Opis</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrWhiteSpace(Model.Opis))
+                        {
+                            @Model.Opis
+                        }
+                        else
+                        {
+                            <span class="text-muted">Brak opisu</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Czy własna</dt>
+                    <dd class="col-sm-9">
+                        @(Model.CzyWlasna ? "Tak" : "Nie")
+                    </dd>
+                </dl>
+
+                <div class="mt-3">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">
+                        Edytuj
+                    </a>
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        Wróć do listy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

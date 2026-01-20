@@ -1,0 +1,54 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.EnglishQuizViewModel
+
+@{
+    ViewData["Title"] = "Quiz – język angielski";
+}
+
+<div class="home-section">
+    <h2 class="home-section-title mb-3">
+        Quiz – język angielski (@Model.Difficulty)
+    </h2>
+
+    <div class="home-card">
+        <form asp-action="StartEnglish" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+            <input type="hidden" asp-for="Difficulty" />
+
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Słówko po polsku</th>
+                        <th>Twoja odpowiedź (po angielsku)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>
+                                @Model.Questions[i].Polish
+                                <input type="hidden" asp-for="Questions[i].Polish" />
+                                <input type="hidden" asp-for="Questions[i].English" />
+                            </td>
+                            <td style="max-width: 240px;">
+                                <input asp-for="Questions[i].UserAnswer" class="form-control" />
+                                <span asp-validation-for="Questions[i].UserAnswer" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary auth-main-btn">
+                Zakończ quiz i zapisz wynik
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,50 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.MathQuizAttempt
+
+@{
+    ViewData["Title"] = "Wynik quizu";
+    var percent = Model.LiczbaPytan > 0
+        ? (int)System.Math.Round(100.0 * Model.PoprawneOdpowiedzi / Model.LiczbaPytan)
+        : 0;
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-xl-5">
+            <div class="auth-card">
+                <h1 class="auth-title">Twój wynik 🎉</h1>
+                <p class="auth-subtitle">
+                    Oto podsumowanie ostatniego quizu.
+                </p>
+
+                <div class="mb-3">
+                    <h2 class="h4 mb-1">
+                        @Model.Przedmiot – @Model.Poziom
+                    </h2>
+                    <p class="mb-0 text-muted">
+                        Data podejścia: @Model.DataPodejscia.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                    </p>
+                </div>
+
+                <div class="home-card mb-3">
+                    <p class="mb-1">
+                        Poprawne odpowiedzi:
+                        <strong>@Model.PoprawneOdpowiedzi / @Model.LiczbaPytan</strong>
+                    </p>
+                    <p class="mb-0">
+                        Skuteczność:
+                        <strong>@percent %</strong>
+                    </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <a asp-action="Index" class="btn btn-primary">
+                        Rozwiąż kolejny quiz
+                    </a>
+                    <a asp-action="MyAttempts" class="btn btn-outline-secondary">
+                        Zobacz moje wszystkie wyniki
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

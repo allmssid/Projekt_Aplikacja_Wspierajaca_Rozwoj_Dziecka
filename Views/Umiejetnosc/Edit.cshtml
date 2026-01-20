@@ -1,0 +1,73 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.Umiejetnosc
+
+@{
+    ViewData["Title"] = "Edytuj umiejętność";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-xl-6">
+            <div class="auth-card">
+                <h1 class="auth-title">Edytuj umiejętność</h1>
+                <p class="auth-subtitle">
+                    Zmień dane umiejętności. Zmiany będą widoczne wszędzie, gdzie umiejętność została wykorzystana.
+                </p>
+
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Nazwa" class="form-label"></label>
+                        <input asp-for="Nazwa" class="form-control auth-input" />
+                        <span asp-validation-for="Nazwa" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Opis" class="form-label"></label>
+                        <textarea asp-for="Opis" class="form-control auth-input" rows="3"></textarea>
+                        <span asp-validation-for="Opis" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Kierunek" class="form-label"></label>
+                        <select asp-for="Kierunek" class="form-control auth-input"
+                                asp-items="Html.GetEnumSelectList<Aplikacja_wspierajaca_rozwoj_dziecka.Models.ObszarRozwoju>()">
+                        </select>
+                        <span asp-validation-for="Kierunek" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ZalecanyWiekOdRoku" class="form-label"></label>
+                            <input asp-for="ZalecanyWiekOdRoku" class="form-control auth-input" type="number" min="0" />
+                            <span asp-validation-for="ZalecanyWiekOdRoku" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ZalecanyWiekDoRoku" class="form-label"></label>
+                            <input asp-for="ZalecanyWiekDoRoku" class="form-control auth-input" type="number" min="0" />
+                            <span asp-validation-for="ZalecanyWiekDoRoku" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input asp-for="CzyWlasna" class="form-check-input" />
+                        <label asp-for="CzyWlasna" class="form-check-label"></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary auth-main-btn w-100">
+                        Zapisz zmiany
+                    </button>
+                </form>
+
+                <p class="auth-bottom-text">
+                    <a asp-action="Index" class="auth-link">Wróć do listy umiejętności</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

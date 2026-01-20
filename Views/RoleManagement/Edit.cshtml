@@ -1,0 +1,45 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.RoleEditViewModel
+
+@{
+    ViewData["Title"] = "Zmiana rangi użytkownika";
+}
+
+<h2>Zmiana rangi użytkownika</h2>
+
+<div class="mb-3">
+    <strong>@Model.Email</strong><br />
+    @Model.Imie @Model.Nazwisko
+</div>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="Email" />  
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label class="form-label">Aktualna ranga</label>
+        <input class="form-control" value="@Model.CurrentRole" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SelectedRole" class="form-label"></label>
+        <select asp-for="SelectedRole" class="form-select">
+            <option value="">(brak / usuń rangę)</option>
+            @foreach (var r in Model.AvailableRoles)
+            {
+                <option value="@r" selected="@(r == Model.CurrentRole ? "selected" : null)">@r</option>
+            }
+        </select>
+        <span asp-validation-for="SelectedRole" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Wróć</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

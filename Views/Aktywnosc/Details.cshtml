@@ -1,0 +1,43 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.Aktywnosc
+
+@{
+    ViewData["Title"] = "Szczegóły aktywności";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="auth-card">
+                <h1 class="auth-title">@Model.Kierunek</h1>
+                <p class="auth-subtitle">
+                    Szczegółowe informacje o wybranej aktywności.
+                </p>
+
+                <dl class="row">
+                    <dt class="col-sm-3">Opis</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrWhiteSpace(Model.Opis))
+                        {
+                            @Model.Opis
+                        }
+                        else
+                        {
+                            <span class="text-muted">Brak opisu</span>
+                        }
+                    </dd>
+
+                    @* jeśli masz więcej pól w Aktywnosc – dodaj je tutaj jako kolejne dt/dd *@
+                </dl>
+
+                <div class="mt-3">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">
+                        Edytuj
+                    </a>
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        Wróć do listy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

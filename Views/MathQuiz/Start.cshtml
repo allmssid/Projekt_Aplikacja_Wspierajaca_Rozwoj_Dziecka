@@ -1,0 +1,45 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.MathQuizViewModel
+
+@{
+    ViewData["Title"] = "Quiz z matematyki";
+}
+
+<h2>Quiz z matematyki</h2>
+
+<form asp-action="Start" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Pytanie</th>
+                <th>Twoja odpowiedź</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>
+                        @Model.Questions[i].A + " + " + @Model.Questions[i].B + " = "
+                        @* ukryte pola żeby na POST znać treść zadania *@
+                        <input type="hidden" asp-for="Questions[i].A" />
+                        <input type="hidden" asp-for="Questions[i].B" />
+                    </td>
+                    <td>
+                        <input asp-for="Questions[i].UserAnswer" class="form-control" />
+                        <span asp-validation-for="Questions[i].UserAnswer" class="text-danger"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Zakończ quiz</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

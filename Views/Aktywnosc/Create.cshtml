@@ -1,0 +1,48 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.Aktywnosc
+
+@{
+    ViewData["Title"] = "Dodaj aktywność";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-xl-6">
+            <div class="auth-card">
+                <h1 class="auth-title">Dodaj nową aktywność</h1>
+                <p class="auth-subtitle">
+                    Aktywności możesz później powiązać z umiejętnościami oraz zapisywać w dzienniku aktywności dziecka.
+                </p>
+
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Kierunek" class="form-label"></label>
+                        <input asp-for="Kierunek" class="form-control auth-input" />
+                        <span asp-validation-for="Kierunek" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Opis" class="form-label"></label>
+                        <textarea asp-for="Opis" class="form-control auth-input" rows="3"></textarea>
+                        <span asp-validation-for="Opis" class="text-danger"></span>
+                    </div>
+
+                    @* jeśli w klasie Aktywnosc masz inne pola (np. ObszarRozwoju, poziom), możesz dodać je tutaj *@
+
+                    <button type="submit" class="btn btn-primary auth-main-btn w-100">
+                        Zapisz aktywność
+                    </button>
+                </form>
+
+                <p class="auth-bottom-text">
+                    <a asp-action="Index" class="auth-link">Wróć do listy aktywności</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

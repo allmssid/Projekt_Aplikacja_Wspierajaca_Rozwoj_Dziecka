@@ -1,0 +1,189 @@
+﻿@{
+    ViewData["Title"] = "Strona główna";
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+    bool isChild = User.IsInRole("Dziecko");
+    bool isParent = User.IsInRole("Rodzic");
+    bool isTeacher = User.IsInRole("Nauczyciel");
+    bool isAdmin = User.IsInRole("Administrator");
+}
+
+<div class="home-page">
+    <!-- Dekoracyjne napisy w tle -->
+    <div class="home-bg-decor">
+        <!-- napisy / działania -->
+        <span class="bg-item bg-item-1">2 + 3 = 5</span>
+        <span class="bg-item bg-item-2">cat</span>
+        <span class="bg-item bg-item-3">+ − × ÷</span>
+        <span class="bg-item bg-item-4">dog</span>
+        <span class="bg-item bg-item-5">7 × 4 = 28</span>
+        <span class="bg-item bg-item-6">blue</span>
+        <span class="bg-item bg-item-7">10 − 6 = 4</span>
+        <span class="bg-item bg-item-8">apple</span>
+        <span class="bg-item bg-item-9">3 × 9 = 27</span>
+        <span class="bg-item bg-item-10">school</span>
+
+        <!-- kolorowe kształty -->
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="bg-shape bg-shape-4"></div>
+    </div>
+
+    <div class="home-hero mb-5">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h1 class="home-hero-title">
+                    Ucz się i baw z naszymi quizami! 🎮📚
+                </h1>
+                <p class="home-hero-subtitle">
+                    Matematyka i język angielski w formie krótkich, kolorowych quizów.
+                    Zdobywaj punkty, rozwijaj umiejętności i pokazuj swoje postępy rodzicom oraz nauczycielom.
+                </p>
+
+                <div class="home-hero-buttons">
+                    @if (isAuthenticated && isChild)
+                    {
+                        <a asp-controller="MathQuiz" asp-action="Index" class="btn btn-lg btn-primary me-2 mb-2">
+                            Rozpocznij quiz 🚀
+                        </a>
+                        <a asp-controller="MathQuiz" asp-action="MyAttempts" class="btn btn-lg btn-outline-light mb-2">
+                            Zobacz moje wyniki ⭐
+                        </a>
+                    }
+                    else if (isAuthenticated && (isParent || isTeacher || isAdmin))
+                    {
+                        <a asp-controller="Dziecko" asp-action="Index" class="btn btn-lg btn-primary me-2 mb-2">
+                            Zarządzaj dziećmi 👨‍👩‍👧
+                        </a>
+                        <a asp-controller="MathQuiz" asp-action="AllAttempts" class="btn btn-lg btn-outline-light mb-2">
+                            Wyniki quizów dzieci 📊
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-primary me-2 mb-2">
+                            Załóż konto 🧑‍👩‍👧
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-lg btn-outline-light mb-2">
+                            Zaloguj się i zacznij przygodę ✨
+                        </a>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="home-hero-illustration">
+                    <div class="bubble bubble-1">2 + 3 = ?</div>
+                    <div class="bubble bubble-2">cat = ?</div>
+                    <div class="bubble bubble-3">7 × 4 = ?</div>
+                    <div class="home-hero-kid">
+                        😊
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="home-section mb-5">
+        <h2 class="home-section-title text-center mb-4">Dlaczego warto?</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="home-card h-100">
+                    <div class="home-card-icon">🎯</div>
+                    <h3>Krótko i na temat</h3>
+                    <p>
+                        Quizy trwają tylko kilka minut. Idealne przerwy między zabawą, a nauką –
+                        bez nudy i przeładowania materiałem.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="home-card h-100">
+                    <div class="home-card-icon">🧠</div>
+                    <h3>Matematyka i angielski</h3>
+                    <p>
+                        Ćwicz dodawanie, odejmowanie i mnożenie oraz podstawowe słówka
+                        z języka angielskiego na trzech poziomach trudności.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="home-card h-100">
+                    <div class="home-card-icon">📊</div>
+                    <h3>Postępy pod kontrolą</h3>
+                    <p>
+                        Każda próba quizu zapisuje się w systemie. Rodzice i nauczyciele
+                        mogą śledzić rozwój dziecka i wspierać je dokładnie tam, gdzie trzeba.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section mb-5">
+        <h2 class="home-section-title text-center mb-4">Jak zacząć?</h2>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="home-step">
+                    <div class="home-step-number">1</div>
+                    <h3>Utwórz konto</h3>
+                    <p>
+                        Rodzic lub nauczyciel zakłada konto i dodaje dziecko w zakładce <strong>Dzieci</strong>.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="home-step">
+                    <div class="home-step-number">2</div>
+                    <h3>Wybierz quiz</h3>
+                    <p>
+                        Dziecko loguje się i wchodzi w <strong>Quiz</strong>, wybierając przedmiot i poziom trudności.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="home-step">
+                    <div class="home-step-number">3</div>
+                    <h3>Sprawdź wyniki</h3>
+                    <p>
+                        Rodzic lub nauczyciel może podglądać wyniki w zakładce <strong>Wyniki quizu (dzieci)</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section home-section-highlight mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h2>Gotowy na pierwszą przygodę z quizem? 🎉</h2>
+                <p>
+                    Każdy quiz to kolejny krok w rozwoju Twoich umiejętności.
+                    Spróbuj swoich sił już teraz!
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                @if (isAuthenticated && isChild)
+                {
+                    <a asp-controller="MathQuiz" asp-action="Index" class="btn btn-lg btn-light">
+                        Start quizu ➜
+                    </a>
+                }
+                else if (!isAuthenticated)
+                {
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-light">
+                        Załóż konto i zacznij ➜
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="MathQuiz" asp-action="AllAttempts" class="btn btn-lg btn-light">
+                        Zobacz wyniki dzieci ➜
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aplikacja_wspierajaca_rozwoj_dziecka</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Aplikacja_wspierajaca_rozwoj_dziecka.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark app-navbar">
+            <div class="container-fluid">
+                @* Logo / wejście na stronę główną *@
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    Rozwój dziecka
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <!-- LEWA STRONA MENU -->
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @* Dzieci – tylko Administrator i Nauczyciel *@
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Nauczyciel"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Dziecko" asp-action="Index">Dzieci</a>
+                            </li>
+                        }
+
+                        @* Umiejętności i Aktywności – Administrator, Nauczyciel, Rodzic *@
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Nauczyciel") || User.IsInRole("Rodzic"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Umiejetnosc" asp-action="Index">Umiejętności</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Aktywnosc" asp-action="Index">Aktywności</a>
+                            </li>
+                        }
+
+                        @* Link do strony prywatności – dostępny dla wszystkich *@
+                     @*   <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Polityka prywatności</a>
+                        </li>
+                     *@
+                        @* Quiz dla dziecka *@
+                        @if (User.IsInRole("Dziecko"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="MathQuiz" asp-action="Index">
+                                    Quiz
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="MathQuiz" asp-action="MyAttempts">
+                                    Moje wyniki
+                                </a>
+                            </li>
+                        }
+
+                        @* Wyniki quizu dla rodzica / nauczyciela / ADMINA *@
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Rodzic") || User.IsInRole("Nauczyciel"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="MathQuiz" asp-action="AllAttempts">
+                                    Wyniki quizu (dzieci)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- PRAWA STRONA MENU -->
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Profile" asp-action="Index">
+                                    Mój profil
+                                </a>
+                            </li>
+
+                            @* Panel rang – tylko Administrator i Nauczyciel *@
+                            @if (User.IsInRole("Administrator") || User.IsInRole("Nauczyciel"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="RoleManagement" asp-action="Index">
+                                        Panel rang
+                                    </a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <span class="nav-link nav-hello">Witaj, @User.Identity.Name</span>
+                            </li>
+                            <li class="nav-item">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" method="post">
+                                    <button type="submit" class="nav-link btn btn-link nav-logout-btn">Wyloguj</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Zaloguj</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Rejestracja</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="app-footer-brand">
+                Rozwój dziecka
+            </span>
+
+            <span class="app-footer-text">
+                © 2025 – Aplikacja wspierająca rozwój dziecka
+            </span>
+
+            <span>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="app-footer-link">
+                    Polityka prywatności
+                </a>
+            </span>
+        </div>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.MathQuizViewModel
+
+@{
+    ViewData["Title"] = "Quiz – matematyka";
+}
+
+<div class="home-section">
+    <h2 class="home-section-title mb-3">
+        Quiz – matematyka (@Model.Difficulty)
+    </h2>
+
+    <div class="home-card">
+        <form asp-action="StartMath" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+            <input type="hidden" asp-for="Difficulty" />
+
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Pytanie</th>
+                        <th>Twoja odpowiedź</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>
+                                @Model.Questions[i].A
+                                @Model.Questions[i].Operation
+                                @Model.Questions[i].B
+                                =
+
+                                <input type="hidden" asp-for="Questions[i].A" />
+                                <input type="hidden" asp-for="Questions[i].B" />
+                                <input type="hidden" asp-for="Questions[i].Operation" />
+                            </td>
+                            <td style="max-width: 160px;">
+                                <input asp-for="Questions[i].UserAnswer" class="form-control" />
+                                <span asp-validation-for="Questions[i].UserAnswer" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary auth-main-btn">
+                Zakończ quiz i zapisz wynik
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,72 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Rejestracja";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-xl-5">
+            <div class="auth-card">
+                <h1 class="auth-title">Załóż konto 🧑‍💻</h1>
+                <p class="auth-subtitle">
+                    Załóż konto jako rodzic, nauczyciel lub administrator, aby dodawać dzieci,
+                    przeglądać ich postępy i zarządzać nauką.
+                </p>
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <input asp-for="Input.Email" class="form-control auth-input" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <input asp-for="Input.Password" class="form-control auth-input" autocomplete="new-password" aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control auth-input" autocomplete="new-password" aria-required="true" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <button id="registerSubmit" type="submit" class="btn btn-primary w-100 auth-main-btn">
+                        Utwórz konto
+                    </button>
+                </form>
+
+                <p class="auth-bottom-text">
+                    Masz już konto?
+                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="auth-link">
+                        Zaloguj się
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-5 d-none d-lg-flex">
+            <div class="auth-side-panel">
+                <h2>Dla rodziców i nauczycieli 👨‍👩‍👧‍👦</h2>
+                <ul>
+                    <li>Dodawaj dzieci i przypisuj im umiejętności.</li>
+                    <li>Podglądaj wyniki quizów matematycznych i z angielskiego.</li>
+                    <li>Śledź rozwój krok po kroku – wszystko w jednym miejscu.</li>
+                </ul>
+                <div class="auth-side-badges">
+                    <span>👪 Rodzice</span>
+                    <span>👩‍🏫 Nauczyciele</span>
+                    <span>🛡️ Administratorzy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

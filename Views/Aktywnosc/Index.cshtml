@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Aplikacja_wspierajaca_rozwoj_dziecka.Models.Aktywnosc>
+
+@{
+    ViewData["Title"] = "Aktywności";
+}
+
+<div class="home-section">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2 class="home-section-title mb-1">Aktywności</h2>
+            <p class="text-muted mb-0">
+                Lista aktywności wspierających rozwój dziecka. Możesz je przypisywać do umiejętności i dziennika aktywności.
+            </p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">
+            + Dodaj aktywność
+        </a>
+    </div>
+
+    <div class="home-card">
+        <table class="table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Opis</th>
+                    <th style="width: 160px;">Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Kierunek</td>
+                        <td class="text-truncate" style="max-width: 380px;">
+                            @if (!string.IsNullOrWhiteSpace(item.Opis))
+                            {
+                                @item.Opis
+                            }
+                            else
+                            {
+                                <span class="text-muted">Brak opisu</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">
+                                Szczegóły
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1">
+                                Edytuj
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                Usuń
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

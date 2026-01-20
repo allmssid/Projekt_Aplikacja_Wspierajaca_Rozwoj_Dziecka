@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Aplikacja_wspierajaca_rozwoj_dziecka.Models.MathQuizAttempt>
+
+@{
+    ViewData["Title"] = "Moje wyniki";
+}
+
+<div class="home-section">
+    <h2 class="home-section-title mb-3">Moje wyniki quizów</h2>
+
+    <div class="home-card">
+        @if (!Model.Any())
+        {
+            <p class="mb-0 text-muted">
+                Nie masz jeszcze żadnych prób. Rozpocznij swój pierwszy quiz z matematyki lub angielskiego!
+            </p>
+        }
+        else
+        {
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Przedmiot</th>
+                        <th>Poziom</th>
+                        <th>Wynik</th>
+                        <th>Data podejścia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var attempt in Model)
+                    {
+                        <tr>
+                            <td>@attempt.Przedmiot</td>
+                            <td>@attempt.Poziom</td>
+                            <td>
+                                <strong>@attempt.PoprawneOdpowiedzi / @attempt.LiczbaPytan</strong>
+                            </td>
+                            <td>
+                                @attempt.DataPodejscia.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

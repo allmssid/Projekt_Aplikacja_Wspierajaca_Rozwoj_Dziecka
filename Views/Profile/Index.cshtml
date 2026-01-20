@@ -1,0 +1,85 @@
+﻿@model Aplikacja_wspierajaca_rozwoj_dziecka.Models.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Mój profil";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-xl-6">
+            <div class="auth-card">
+                <h1 class="auth-title">Mój profil 👤</h1>
+                <p class="auth-subtitle">
+                    Zaktualizuj swoje dane. Informacje te są używane w aplikacji oraz przy kontaktach
+                    rodzic–nauczyciel–dziecko.
+                </p>
+
+                @if (TempData["ProfileUpdated"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["ProfileUpdated"]
+                    </div>
+                }
+
+                <form asp-action="Index" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control auth-input" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Imie" class="form-label"></label>
+                            <input asp-for="Imie" class="form-control auth-input" />
+                            <span asp-validation-for="Imie" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nazwisko" class="form-label"></label>
+                            <input asp-for="Nazwisko" class="form-control auth-input" />
+                            <span asp-validation-for="Nazwisko" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber" class="form-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control auth-input" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Moje role</label>
+                        @if (Model.Roles != null && Model.Roles.Any())
+                        {
+                            <div>
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <span class="badge bg-secondary me-1">@role</span>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-muted">Brak przypisanych ról.</div>
+                        }
+                    </div>
+
+                    <button type="submit" class="btn btn-primary auth-main-btn w-100">
+                        Zapisz zmiany
+                    </button>
+                </form>
+
+                <p class="auth-bottom-text mt-3 mb-0">
+                    Jeśli chcesz zmienić rangę (rolę), skontaktuj się z administratorem
+                    lub nauczycielem – zmiany ról dokonuje się w <strong>Panelu rang</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

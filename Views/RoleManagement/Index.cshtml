@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Aplikacja_wspierajaca_rozwoj_dziecka.Models.RoleEditViewModel>
+
+@{
+    ViewData["Title"] = "Zarządzanie rangami użytkowników";
+}
+
+<h2>Zarządzanie rangami użytkowników</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>E-mail</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Ranga</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Email</td>
+                <td>@u.Imie</td>
+                <td>@u.Nazwisko</td>
+                <td>@u.CurrentRole</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@u.UserId" class="btn btn-sm btn-primary">
+                        Zmień rangę
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

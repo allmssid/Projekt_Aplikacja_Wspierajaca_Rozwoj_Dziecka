@@ -1,0 +1,577 @@
+/* Podstawowe ustawienia */
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 80px; /* miejsce na sta³¹ stopkê */
+    position: relative;
+}
+
+
+    /* GLOBALNE T£O (jak na g³ównej – wszêdzie) */
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        background: radial-gradient(circle at 10% 20%, rgba(129, 140, 248, 0.25) 0, transparent 45%), radial-gradient(circle at 90% 10%, rgba(45, 212, 191, 0.25) 0, transparent 50%), radial-gradient(circle at 0% 100%, rgba(244, 114, 182, 0.22) 0, transparent 45%), radial-gradient(circle at 80% 90%, rgba(251, 191, 36, 0.22) 0, transparent 50%), #f9fafb;
+    }
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* --- Nawigacja aplikacji --- */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+}
+
+.app-navbar {
+    background: radial-gradient(circle at 0% 0%, rgba(96, 165, 250, 0.4) 0, transparent 55%), radial-gradient(circle at 100% 0%, rgba(52, 211, 153, 0.4) 0, transparent 55%), #0f172a;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.55);
+}
+
+    .app-navbar .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: #e5e7eb !important;
+    }
+
+    .app-navbar .nav-link {
+        color: #e5e7eb !important;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+
+        .app-navbar .nav-link:hover,
+        .app-navbar .nav-link:focus {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+.nav-hello {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.nav-logout-btn {
+    color: #e5e7eb !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* --- Strona g³ówna (hero, sekcje) --- */
+
+.home-page {
+    position: relative;
+    min-height: calc(100vh - 80px);
+}
+
+.home-hero {
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: #fff;
+    border-radius: 1.75rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+}
+
+.home-hero-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.home-hero-subtitle {
+    font-size: 1.1rem;
+    max-width: 620px;
+    opacity: 0.95;
+    margin-bottom: 1.5rem;
+}
+
+.home-hero-buttons .btn-lg {
+    padding: 0.8rem 1.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* Ma³a „ilustracja” po prawej */
+
+.home-hero-illustration {
+    position: relative;
+    height: 220px;
+}
+
+.home-hero-kid {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.4));
+}
+
+.home-hero-illustration .bubble {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.15);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.9rem;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.home-hero-illustration .bubble-1 {
+    top: 10%;
+    left: 10%;
+}
+
+.home-hero-illustration .bubble-2 {
+    top: 0;
+    right: 5%;
+}
+
+.home-hero-illustration .bubble-3 {
+    bottom: 25%;
+    right: 15%;
+}
+
+/* Sekcje */
+
+.home-section {
+    padding: 1.5rem 0;
+}
+
+.home-section-title {
+    font-weight: 700;
+}
+
+/* Karty */
+
+.home-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    padding: 1.6rem 1.6rem 1.4rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+    .home-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+    }
+
+.home-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+/* Kroki */
+
+.home-step {
+    background: #f9fafb;
+    border-radius: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    height: 100%;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.home-step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #4f46e5;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Highlight */
+
+.home-section-highlight {
+    background: #111827;
+    color: #f9fafb;
+    border-radius: 1.5rem;
+    padding: 1.8rem 2rem;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .home-hero {
+        padding: 2.2rem 1.5rem;
+        text-align: center;
+    }
+
+    .home-hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-hero-illustration {
+        display: none;
+    }
+
+    .home-section-highlight {
+        text-align: center;
+    }
+
+        .home-section-highlight .btn {
+            margin-top: 1rem;
+        }
+}
+
+/* --- T³o strony g³ównej – dekoracje tylko na Home --- */
+
+.home-bg-decor {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    font-weight: 700;
+    color: rgba(15, 23, 42, 0.09);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+    .home-bg-decor .bg-item {
+        position: absolute;
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+
+/* konkretne pozycje elementów */
+
+.bg-item-1 {
+    top: 12%;
+    left: 8%;
+}
+
+.bg-item-2 {
+    top: 18%;
+    right: 15%;
+}
+
+.bg-item-3 {
+    top: 40%;
+    left: 12%;
+    font-size: 1.5rem;
+}
+
+.bg-item-4 {
+    bottom: 22%;
+    right: 10%;
+}
+
+.bg-item-5 {
+    bottom: 12%;
+    left: 18%;
+}
+
+.bg-item-6 {
+    top: 65%;
+    right: 30%;
+}
+
+.bg-item-7 {
+    top: 5%;
+    right: 45%;
+}
+
+.bg-item-8 {
+    bottom: 38%;
+    left: 35%;
+}
+
+.bg-item-9 {
+    top: 30%;
+    left: 55%;
+}
+
+.bg-item-10 {
+    bottom: 18%;
+    right: 32%;
+}
+
+/* kolorowe kszta³ty (plamy) */
+
+.bg-shape {
+    position: absolute;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55) 0, transparent 55%);
+    opacity: 0.55;
+    filter: blur(2px);
+    transform: rotate(-8deg);
+}
+
+.bg-shape-1 {
+    width: 180px;
+    height: 180px;
+    top: 15%;
+    right: -40px;
+    background-color: rgba(59, 130, 246, 0.4);
+}
+
+.bg-shape-2 {
+    width: 220px;
+    height: 220px;
+    bottom: -60px;
+    left: -60px;
+    background-color: rgba(244, 114, 182, 0.35);
+}
+
+.bg-shape-3 {
+    width: 140px;
+    height: 140px;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%) rotate(10deg);
+    background-color: rgba(52, 211, 153, 0.35);
+}
+
+.bg-shape-4 {
+    width: 120px;
+    height: 120px;
+    top: 8%;
+    left: 45%;
+    background-color: rgba(251, 191, 36, 0.35);
+}
+
+/* upewniamy siê, ¿e hero i sekcje s¹ nad t³em */
+
+.home-hero,
+.home-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Strony logowania / rejestracji / reset has³a --- */
+
+.auth-wrapper {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+}
+
+.auth-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    padding: 2rem 2.2rem 1.8rem;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+    .auth-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.12) 0, transparent 55%), radial-gradient(circle at 100% 100%, rgba(52, 211, 153, 0.12) 0, transparent 55%);
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+.auth-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+    font-size: 0.98rem;
+    color: #4b5563;
+    margin-bottom: 1.4rem;
+}
+
+.auth-input {
+    border-radius: 0.9rem;
+}
+
+.auth-main-btn {
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+}
+
+.auth-bottom-text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+.auth-link {
+    color: #4f46e5;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .auth-link:hover {
+        text-decoration: underline;
+    }
+
+.auth-link-small {
+    font-size: 0.9rem;
+    color: #4f46e5;
+    text-decoration: none;
+}
+
+    .auth-link-small:hover {
+        text-decoration: underline;
+    }
+
+/* Panel boczny z opisem */
+
+.auth-side-panel {
+    background: #0f172a;
+    color: #e5e7eb;
+    border-radius: 1.5rem;
+    padding: 2rem 2rem;
+    margin-left: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.7);
+}
+
+    .auth-side-panel h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .auth-side-panel ul {
+        padding-left: 1.1rem;
+        margin-bottom: 1rem;
+        font-size: 0.96rem;
+    }
+
+    .auth-side-panel li {
+        margin-bottom: 0.25rem;
+    }
+
+.auth-side-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+    .auth-side-badges span {
+        background: rgba(15, 23, 42, 0.9);
+        border-radius: 999px;
+        padding: 0.25rem 0.7rem;
+        font-size: 0.85rem;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+/* Mobile auth */
+
+@media (max-width: 768px) {
+    .auth-wrapper {
+        margin: 1.8rem auto;
+    }
+
+    .auth-card {
+        padding: 1.6rem 1.4rem 1.4rem;
+    }
+}
+
+/* --- Sta³a stopka aplikacji --- */
+
+.app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040; /* trochê mniej ni¿ navbar (1050) */
+    background: radial-gradient(circle at 0% 100%, rgba(96, 165, 250, 0.35) 0, transparent 55%), radial-gradient(circle at 100% 100%, rgba(52, 211, 153, 0.35) 0, transparent 55%), #020617;
+    color: #e5e7eb;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.65);
+    padding: 0.55rem 0;
+    font-size: 0.9rem;
+}
+
+.app-footer-brand {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.app-footer-text {
+    opacity: 0.9;
+}
+
+.app-footer-link {
+    color: #a5b4fc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .app-footer-link:hover {
+        text-decoration: underline;
+    }
+
+/* uk³ad na ma³ych ekranach */
+
+@media (max-width: 768px) {
+    .app-footer .container {
+        flex-direction: column;
+        gap: 0.15rem;
+        text-align: center;
+    }
+}
+
+/* --- Lista dzieci --- */
+
+.child-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.35);
+}
+
+.child-info .child-name {
+    font-weight: 600;
+}
+
+.child-meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+}

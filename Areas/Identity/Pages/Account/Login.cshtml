@@ -1,0 +1,76 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+<div class="auth-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-xl-5">
+            <div class="auth-card">
+                <h1 class="auth-title">Witaj ponownie! 👋</h1>
+                <p class="auth-subtitle">
+                    Zaloguj się, aby kontynuować naukę, rozwiązywać quizy i śledzić swoje postępy.
+                </p>
+
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <input asp-for="Input.Email" class="form-control auth-input" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <input asp-for="Input.Password" class="form-control auth-input" autocomplete="current-password" aria-required="true" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            <label class="form-check-label" asp-for="Input.RememberMe"></label>
+                        </div>
+
+                        <a id="forgot-password" asp-page="./ForgotPassword" class="auth-link-small">
+                            Nie pamiętasz hasła?
+                        </a>
+                    </div>
+
+                    <button id="login-submit" type="submit" class="btn btn-primary w-100 auth-main-btn">
+                        Zaloguj się
+                    </button>
+                </form>
+
+                <p class="auth-bottom-text">
+                    Nie masz jeszcze konta?
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="auth-link">
+                        Załóż konto
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-5 d-none d-lg-flex">
+            <div class="auth-side-panel">
+                <h2>Quizy, które uczą i bawią 🎮</h2>
+                <ul>
+                    <li>Krótki czas – idealne na przerwę.</li>
+                    <li>Matematyka i język angielski na różnych poziomach.</li>
+                    <li>Rodzice i nauczyciele widzą postępy dziecka.</li>
+                </ul>
+                <div class="auth-side-badges">
+                    <span>🧠 Nauka</span>
+                    <span>🎯 Zabawa</span>
+                    <span>📊 Postępy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

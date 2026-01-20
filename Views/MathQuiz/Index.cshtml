@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Quiz";
+}
+
+<div class="home-section">
+    <div class="home-hero mb-4">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h1 class="home-hero-title">Wybierz quiz i poziom trudności 🎯</h1>
+                <p class="home-hero-subtitle">
+                    Matematyka i język angielski w formie krótkich quizów.
+                    Wybierz przedmiot, a potem poziom, który najbardziej Ci odpowiada.
+                </p>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="home-hero-illustration">
+                    <div class="bubble bubble-1">2 + 5 = ?</div>
+                    <div class="bubble bubble-2">cat = ?</div>
+                    <div class="bubble bubble-3">7 × 4 = ?</div>
+                    <div class="home-hero-kid">🤓</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="home-card h-100">
+                <div class="home-card-icon">➕</div>
+                <h3>Matematyka</h3>
+                <p>Ćwicz dodawanie, odejmowanie i mnożenie na różnych poziomach trudności.</p>
+
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                    <a asp-action="StartMath" asp-route-difficulty="Podstawowy"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom podstawowy
+                    </a>
+                    <a asp-action="StartMath" asp-route-difficulty="Sredni"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom średni
+                    </a>
+                    <a asp-action="StartMath" asp-route-difficulty="Trudny"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom trudny
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="home-card h-100">
+                <div class="home-card-icon">🗣️</div>
+                <h3>Język angielski</h3>
+                <p>Sprawdzaj znajomość podstawowych słówek i wyrażeń po angielsku.</p>
+
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                    <a asp-action="StartEnglish" asp-route-difficulty="Podstawowy"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom podstawowy
+                    </a>
+                    <a asp-action="StartEnglish" asp-route-difficulty="Sredni"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom średni
+                    </a>
+                    <a asp-action="StartEnglish" asp-route-difficulty="Trudny"
+                       class="btn btn-sm btn-outline-primary">
+                        Poziom trudny
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
